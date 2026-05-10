@@ -75,7 +75,8 @@ const options = {
                                         type: 'object',
                                         properties: {
                                             name: { type: 'string'},
-                                            id: { type: 'integer'}
+                                            place:{ type: 'string'},
+                                            phone:{ type: 'integer'}
                                         }
                                     }
                                 }
@@ -105,7 +106,9 @@ const options = {
                                 schema: {
                                     type: 'object',
                                     properties: {
-                                        name: { type: 'string'}
+                                        name: { type: 'string'},
+                                        place:{ type: 'string'},
+                                        phone:{ type: 'integer'}
                                     }
                                 }
                             }
