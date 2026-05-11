@@ -1,32 +1,37 @@
 const {Client, Result} = require('pg')
 const express = require('express')
 const { swaggerUi, swaggerSpec } = require('./swagger')
+const cors = require('cors')
+
 
 const app =express()
+app.use(cors())
 app.use(express.json())
+
+
 
 app.use('/swagger-ui/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
-// const con = new Client({
-//     host : "localhost",
-//     user : "postgres",
-//     port : 5433,
-//     password: "nadege33",
-//     database : "demoDb"
-// })
-
 const con = new Client({
-  host: "localhost",
-  user: "postgres",
-  port: 5432,
-  password: "8585",
-  database: "demoDb",
-});
+    host : "localhost",
+    user : "postgres",
+    port : 5433,
+    password: "nadege33",
+    database : "demoDb"
+})
+
+// const con = new Client({
+//   host: "localhost",
+//   user: "postgres",
+//   port: 5432,
+//   password: "8585",
+//   database: "demoDb",
+// });
 
 
 con.connect()
 .then(()=>console.log("connected"))
-.catch(()=>console.log("connected error",error));
+.catch((error)=>console.log("connected error",error));
 
 
 
@@ -78,7 +83,7 @@ app.get('/getData',(req,res)=>{
 
     con.query(fetch_query,(err,result)=>{
         if(err){
-            result.send(err)
+            res.send(err)
         } else{
             res.send(result.rows )
         }
